@@ -1,0 +1,25 @@
+<script type="text/javascript" src="./js/fastclick.js"></script>
+<script type="text/javascript">
+(function(root) {
+  'use strict';
+
+  var xin = root.xin;
+  var attached = false;
+
+  xin.Component({
+    is: 'lux-fastclick',
+
+    created: function() {
+      if (attached) return;
+      attached = true;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        if (root.XIN_DEBUG) {
+          console.log('lux-fastclick attaching...');
+        }
+        FastClick.attach(document.body);
+      }, false);
+    }
+  });
+})(this);
+</script>
