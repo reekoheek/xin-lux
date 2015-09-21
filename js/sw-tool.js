@@ -1,5 +1,3 @@
-importScripts('components/xin-lux/js/cache-polyfill.js');
-
 (function(root) {
   'use strict';
 
