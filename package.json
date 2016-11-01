@@ -4,8 +4,7 @@
   "description": "",
   "main": "lux-fastclick.js",
   "dependencies": {
-    "sw-toolbox": "^3.4.0",
-    "xin": "^2.2.0"
+    "sw-toolbox": "^3.4.0"
   },
   "devDependencies": {
     "eslint": "^3.9.0",
