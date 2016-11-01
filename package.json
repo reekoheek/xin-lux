@@ -1,0 +1,30 @@
+{
+  "name": "xin-lux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lux-fastclick.js",
+  "dependencies": {
+    "sw-toolbox": "^3.4.0",
+    "xin": "^2.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.9.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.3.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "file-loader": "^0.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reekoheek/xin-lux.git"
+  },
+  "author": "Ganesha <reekoheek@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reekoheek/xin-lux/issues"
+  },
+  "homepage": "https://github.com/reekoheek/xin-lux#readme"
+}
