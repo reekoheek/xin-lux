@@ -1,5 +1,6 @@
-webpackJsonp([0],[
-/* 0 */
+webpackJsonp([0],{
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10,11 +11,13 @@ webpackJsonp([0],[
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+	
 	var _xin = __webpack_require__(1);
 	
 	var _xin2 = _interopRequireDefault(_xin);
 	
-	var _fastclick = __webpack_require__(2);
+	var _fastclick = __webpack_require__(23);
 	
 	var _fastclick2 = _interopRequireDefault(_fastclick);
 	
@@ -26,7 +29,7 @@ webpackJsonp([0],[
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var attached = false;
+	var _attached = false;
 	
 	var LuxFastclick = function (_xin$Component) {
 	  _inherits(LuxFastclick, _xin$Component);
@@ -38,11 +41,13 @@ webpackJsonp([0],[
 	  }
 	
 	  _createClass(LuxFastclick, [{
-	    key: 'created',
-	    value: function created() {
-	      if (attached) return;
+	    key: 'attached',
+	    value: function attached() {
+	      _get(LuxFastclick.prototype.__proto__ || Object.getPrototypeOf(LuxFastclick.prototype), 'attached', this).call(this);
 	
-	      attached = true;
+	      if (_attached) return;
+	
+	      _attached = true;
 	
 	      _fastclick2.default.attach(document.body);
 	    }
@@ -56,8 +61,8 @@ webpackJsonp([0],[
 	exports.default = LuxFastclick;
 
 /***/ },
-/* 1 */,
-/* 2 */
+
+/***/ 23:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
@@ -874,7 +879,7 @@ webpackJsonp([0],[
 	    return new FastClick(layer, options);
 	  };
 	
-	  if ("function" === 'function' && _typeof(__webpack_require__(3)) === 'object' && __webpack_require__(3)) {
+	  if ("function" === 'function' && _typeof(__webpack_require__(24)) === 'object' && __webpack_require__(24)) {
 	
 	    // AMD. Register as an anonymous module.
 	    !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
@@ -889,7 +894,8 @@ webpackJsonp([0],[
 	})();
 
 /***/ },
-/* 3 */
+
+/***/ 24:
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -897,5 +903,6 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ }
-]);
+
+});
 //# sourceMappingURL=lux-fastclick.js.map

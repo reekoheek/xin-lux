@@ -1,5 +1,6 @@
-webpackJsonp([2],[
-/* 0 */
+webpackJsonp([2],{
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16,11 +17,11 @@ webpackJsonp([2],[
 	
 	var _xin2 = _interopRequireDefault(_xin);
 	
-	__webpack_require__(4);
+	__webpack_require__(25);
 	
-	__webpack_require__(5);
+	__webpack_require__(26);
 	
-	__webpack_require__(6);
+	__webpack_require__(27);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -185,26 +186,27 @@ webpackJsonp([2],[
 	exports.default = LuxSw;
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */
+
+/***/ 25:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "./sw/service-worker.js";
 
 /***/ },
-/* 5 */
+
+/***/ 26:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "./sw/sw-toolbox/sw-toolbox.js";
 
 /***/ },
-/* 6 */
+
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "./sw/sw-toolbox/sw-toolbox.js.map";
 
 /***/ }
-]);
+
+});
 //# sourceMappingURL=lux-sw.js.map

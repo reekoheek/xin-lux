@@ -23,7 +23,11 @@
     "webpack": "^1.13.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf dist",
+    "build:webpack": "webpack",
+    "build": "yarn run clean && yarn run build:webpack && NODE_ENV=production yarn run build:webpack",
+    "test:lint": "eslint .",
+    "test": "yarn run test:lint"
   },
   "repository": {
     "type": "git",
