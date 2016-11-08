@@ -4,7 +4,9 @@ import FastClick from './thirdparty/fastclick';
 let attached = false;
 
 class LuxFastclick extends xin.Component {
-  created () {
+  attached () {
+    super.attached();
+
     if (attached) return;
 
     attached = true;

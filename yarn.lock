@@ -1597,14 +1597,6 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-"github:xinix-technology/xin#next":
-  name xin
-  version "2.2.0"
-  resolved "https://codeload.github.com/xinix-technology/xin/tar.gz/a8a36de21b86ba401df4f905e658b19e3da127a8"
-  dependencies:
-    template-binding xinix-technology/template-binding#master
-    webcomponentsjs "^1.0.2"
-
 glob-base@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/glob-base/-/glob-base-0.3.0.tgz#dbb164f6221b1c0b1ccf82aea328b497df0ea3c4"
@@ -3293,6 +3285,13 @@ write@^0.2.1:
   resolved "https://registry.yarnpkg.com/write/-/write-0.2.1.tgz#5fc03828e264cea3fe91455476f7a3c566cb0757"
   dependencies:
     mkdirp "^0.5.1"
+
+"xin@github:xinix-technology/xin#next":
+  version "2.2.0"
+  resolved "https://codeload.github.com/xinix-technology/xin/tar.gz/a8a36de21b86ba401df4f905e658b19e3da127a8"
+  dependencies:
+    template-binding xinix-technology/template-binding#master
+    webcomponentsjs "^1.0.2"
 
 xtend@^4.0.0:
   version "4.0.1"
