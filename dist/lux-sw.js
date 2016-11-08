@@ -17,11 +17,11 @@ webpackJsonp([2],{
 	
 	var _xin2 = _interopRequireDefault(_xin);
 	
+	__webpack_require__(24);
+	
 	__webpack_require__(25);
 	
 	__webpack_require__(26);
-	
-	__webpack_require__(27);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -69,7 +69,7 @@ webpackJsonp([2],{
 	              case 4:
 	                _context2.prev = 4;
 	                return _context2.delegateYield(regeneratorRuntime.mark(function _callee() {
-	                  var params, childParams, url, registration;
+	                  var params, baseUrl, childParams, url, registration;
 	                  return regeneratorRuntime.wrap(function _callee$(_context) {
 	                    while (1) {
 	                      switch (_context.prev = _context.next) {
@@ -81,12 +81,13 @@ webpackJsonp([2],{
 	                            debug: _this2.debug,
 	                            defaultCacheStrategy: _this2.defaultCacheStrategy
 	                          };
-	                          _context.next = 3;
+	                          baseUrl = new URL(_this2.href, location.href);
+	                          _context.next = 4;
 	                          return Promise.all([].map.call(_this2.children, function (el) {
-	                            return el._getParameters();
+	                            return el._getParameters(baseUrl);
 	                          }));
 	
-	                        case 3:
+	                        case 4:
 	                          childParams = _context.sent;
 	
 	
@@ -97,16 +98,16 @@ webpackJsonp([2],{
 	                          });
 	
 	                          url = _this2.href + '?' + _this2._serializeUrlParams(params);
-	                          _context.next = 8;
+	                          _context.next = 9;
 	                          return navigator.serviceWorker.register(url);
 	
-	                        case 8:
+	                        case 9:
 	                          registration = window.sw = _context.sent;
 	
 	
 	                          console.info('Service worker registration successful with scope: ' + registration.scope);
 	
-	                        case 10:
+	                        case 11:
 	                        case 'end':
 	                          return _context.stop();
 	                      }
@@ -149,7 +150,7 @@ webpackJsonp([2],{
 	  }, {
 	    key: 'props',
 	    get: function get() {
-	      return _xin2.default.mix(_get(LuxSw.prototype.__proto__ || Object.getPrototypeOf(LuxSw.prototype), 'props', this), {
+	      return Object.assign({}, _get(LuxSw.prototype.__proto__ || Object.getPrototypeOf(LuxSw.prototype), 'props', this), {
 	        href: {
 	          type: String,
 	          value: 'sw-import.js'
@@ -187,21 +188,21 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 25:
+/***/ 24:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "./sw/service-worker.js";
 
 /***/ },
 
-/***/ 26:
+/***/ 25:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "./sw/sw-toolbox/sw-toolbox.js";
 
 /***/ },
 
-/***/ 27:
+/***/ 26:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "./sw/sw-toolbox/sw-toolbox.js.map";

@@ -38,7 +38,7 @@ webpackJsonp([4],[
 	  _createClass(LuxSwFetch, [{
 	    key: '_getParameters',
 	    value: function () {
-	      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+	      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(baseUrl) {
 	        return regeneratorRuntime.wrap(function _callee$(_context) {
 	          while (1) {
 	            switch (_context.prev = _context.next) {
@@ -55,7 +55,7 @@ webpackJsonp([4],[
 	        }, _callee, this);
 	      }));
 	
-	      function _getParameters() {
+	      function _getParameters(_x) {
 	        return _ref.apply(this, arguments);
 	      }
 	
@@ -64,7 +64,7 @@ webpackJsonp([4],[
 	  }, {
 	    key: 'props',
 	    get: function get() {
-	      return _xin2.default.mix(_get(LuxSwFetch.prototype.__proto__ || Object.getPrototypeOf(LuxSwFetch.prototype), 'props', this), {
+	      return Object.assign({}, _get(LuxSwFetch.prototype.__proto__ || Object.getPrototypeOf(LuxSwFetch.prototype), 'props', this), {
 	        handler: {
 	          type: String,
 	          required: true

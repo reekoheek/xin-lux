@@ -1,5 +1,3 @@
-'use strict';
-
 /* globals Response, self */
 /**
  * @license
@@ -16,7 +14,7 @@
   var EXPIRATION_TIME_DELTA = 86400000; // One day, in milliseconds.
   var ORIGIN = /https?:\/\/((www|ssl)\.)?google-analytics\.com/;
 
-  function replayQueuedAnalyticsRequests() {
+  function replayQueuedAnalyticsRequests () {
     global.simpleDB.open(OFFLINE_ANALYTICS_DB_NAME).then(function (db) {
       db.forEach(function (url, originalTimestamp) {
         var timeDelta = Date.now() - originalTimestamp;
@@ -46,13 +44,13 @@
     });
   }
 
-  function queueFailedAnalyticsRequest(request) {
+  function queueFailedAnalyticsRequest (request) {
     global.simpleDB.open(OFFLINE_ANALYTICS_DB_NAME).then(function (db) {
       db.set(request.url, Date.now());
     });
   }
 
-  function handleAnalyticsCollectionRequest(request) {
+  function handleAnalyticsCollectionRequest (request) {
     return global.fetch(request).then(function (response) {
       if (response.status >= 500) {
         // This will cause the promise to reject, triggering the .catch() function.
@@ -66,8 +64,8 @@
     });
   }
 
-  global.toolbox.router.get('/collect', handleAnalyticsCollectionRequest, { origin: ORIGIN });
-  global.toolbox.router.get('/analytics.js', global.toolbox.networkFirst, { origin: ORIGIN });
+  global.toolbox.router.get('/collect', handleAnalyticsCollectionRequest, {origin: ORIGIN});
+  global.toolbox.router.get('/analytics.js', global.toolbox.networkFirst, {origin: ORIGIN});
 
   replayQueuedAnalyticsRequests();
 })(self);

@@ -26,7 +26,7 @@
   global.params = deserializeUrlParams(location.search.substring(1));
 
   // Load the sw-toolbox library.
-  importScripts('/sw/sw-toolbox/sw-toolbox.js');
+  importScripts('./sw/sw-toolbox/sw-toolbox.js');
 
   global.toolbox.options.debug = global.params.get('debug') === 'true';
 

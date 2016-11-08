@@ -4,8 +4,9 @@
   "description": "",
   "main": "lux-fastclick.js",
   "dependencies": {
+    "style-loader": "^0.13.1",
     "sw-toolbox": "^3.4.0",
-    "xin": "github:xinix-technology/xin#next"
+    "xin": "xinix-technology/xin#next"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",

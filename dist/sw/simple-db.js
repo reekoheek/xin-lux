@@ -1,5 +1,3 @@
-'use strict';
-
 /* globals indexedDB, IDBKeyRange, self */
 /**
  * @license
@@ -23,11 +21,11 @@
     return;
   }
 
-  function SimpleDBFactory(secret) {
+  function SimpleDBFactory (secret) {
     if (secret !== SECRET) throw TypeError('Invalid constructor');
   }
   SimpleDBFactory.prototype = {
-    open: function open(name) {
+    open: function (name) {
       return new Promise(function (resolve, reject) {
         var request = indexedDB.open(DB_PREFIX + name);
         request.onupgradeneeded = function () {
@@ -43,7 +41,7 @@
         };
       });
     },
-    delete: function _delete(name) {
+    delete: function (name) {
       return new Promise(function (resolve, reject) {
         var request = indexedDB.deleteDatabase(DB_PREFIX + name);
         request.onsuccess = function () {
@@ -53,86 +51,72 @@
           reject(request.error);
         };
       });
-    }
+    },
   };
 
-  function SimpleDB(secret, name, db) {
+  function SimpleDB (secret, name, db) {
     if (secret !== SECRET) throw TypeError('Invalid constructor');
     this._name = name;
     this._db = db;
   }
   SimpleDB.cmp = indexedDB.cmp;
   SimpleDB.prototype = {
-    get name() {
+    get name () {
       return this._name;
     },
-    get: function get(key) {
+    get: function (key) {
       var that = this;
       return new Promise(function (resolve, reject) {
         var tx = that._db.transaction(STORE, 'readwrite');
         var store = tx.objectStore(STORE);
         var req = store.get(key);
         // NOTE: Could also use req.onsuccess/onerror
-        tx.oncomplete = function () {
-          resolve(req.result);
-        };
-        tx.onabort = function () {
-          reject(tx.error);
-        };
+        tx.oncomplete = function () { resolve(req.result); };
+        tx.onabort = function () { reject(tx.error); };
       });
     },
-    set: function set(key, value) {
+    set: function (key, value) {
       var that = this;
       return new Promise(function (resolve, reject) {
         var tx = that._db.transaction(STORE, 'readwrite');
         var store = tx.objectStore(STORE);
         // var req =
         store.put(value, key);
-        tx.oncomplete = function () {
-          resolve(undefined);
-        };
-        tx.onabort = function () {
-          reject(tx.error);
-        };
+        tx.oncomplete = function () { resolve(undefined); };
+        tx.onabort = function () { reject(tx.error); };
       });
     },
-    delete: function _delete(key) {
+    delete: function (key) {
       var that = this;
       return new Promise(function (resolve, reject) {
         var tx = that._db.transaction(STORE, 'readwrite');
         var store = tx.objectStore(STORE);
         // var req =
         store.delete(key);
-        tx.oncomplete = function () {
-          resolve(undefined);
-        };
-        tx.onabort = function () {
-          reject(tx.error);
-        };
+        tx.oncomplete = function () { resolve(undefined); };
+        tx.onabort = function () { reject(tx.error); };
       });
     },
-    clear: function clear() {
+    clear: function () {
       var that = this;
       return new Promise(function (resolve, reject) {
         var tx = that._db.transaction(STORE, 'readwrite');
         var store = tx.objectStore(STORE);
         // var request =
         store.clear();
-        tx.oncomplete = function () {
-          resolve(undefined);
-        };
-        tx.onabort = function () {
-          reject(tx.error);
-        };
+        tx.oncomplete = function () { resolve(undefined); };
+        tx.onabort = function () { reject(tx.error); };
       });
     },
-    forEach: function forEach(callback, options) {
+    forEach: function (callback, options) {
       var that = this;
       return new Promise(function (resolve, reject) {
         options = options || {};
         var tx = that._db.transaction(STORE, 'readwrite');
         var store = tx.objectStore(STORE);
-        var request = store.openCursor(options.range, options.direction === 'reverse' ? 'prev' : 'next');
+        var request = store.openCursor(
+          options.range,
+          options.direction === 'reverse' ? 'prev' : 'next');
         request.onsuccess = function () {
           var cursor = request.result;
           if (!cursor) return;
@@ -143,15 +127,11 @@
             tx.abort(); // ???
           }
         };
-        tx.oncomplete = function () {
-          resolve(undefined);
-        };
-        tx.onabort = function () {
-          reject(tx.error);
-        };
+        tx.oncomplete = function () { resolve(undefined); };
+        tx.onabort = function () { reject(tx.error); };
       });
     },
-    getMany: function getMany(keys) {
+    getMany: function (keys) {
       var that = this;
       return new Promise(function (resolve, reject) {
         var tx = that._db.transaction(STORE, 'readwrite');
@@ -162,15 +142,11 @@
             results.push(result);
           });
         });
-        tx.oncomplete = function () {
-          resolve(results);
-        };
-        tx.onabort = function () {
-          reject(tx.error);
-        };
+        tx.oncomplete = function () { resolve(results); };
+        tx.onabort = function () { reject(tx.error); };
       });
     },
-    setMany: function setMany(entries) {
+    setMany: function (entries) {
       var that = this;
       return new Promise(function (resolve, reject) {
         var tx = that._db.transaction(STORE, 'readwrite');
@@ -178,15 +154,11 @@
         entries.forEach(function (entry) {
           store.put(entry.value, entry.key);
         });
-        tx.oncomplete = function () {
-          resolve(undefined);
-        };
-        tx.onabort = function () {
-          reject(tx.error);
-        };
+        tx.oncomplete = function () { resolve(undefined); };
+        tx.onabort = function () { reject(tx.error); };
       });
     },
-    deleteMany: function deleteMany(keys) {
+    deleteMany: function (keys) {
       var that = this;
       return new Promise(function (resolve, reject) {
         var tx = that._db.transaction(STORE, 'readwrite');
@@ -194,16 +166,12 @@
         keys.forEach(function (key) {
           store.delete(key);
         });
-        tx.oncomplete = function () {
-          resolve(undefined);
-        };
-        tx.onabort = function () {
-          reject(tx.error);
-        };
+        tx.oncomplete = function () { resolve(undefined); };
+        tx.onabort = function () { reject(tx.error); };
       });
-    }
+    },
   };
 
   global.simpleDB = new SimpleDBFactory(SECRET);
   global.SimpleDBKeyRange = IDBKeyRange;
-})(self);
+}(self));

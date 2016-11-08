@@ -10,9 +10,9 @@ class LuxSwImportscript extends xin.Component {
     };
   }
 
-  async _getParameters () {
+  async _getParameters (baseUrl) {
     return {
-      importscript: new window.URL(this.href, window.location.href).href,
+      importscript: new window.URL(this.href, baseUrl).href,
     };
   }
 }

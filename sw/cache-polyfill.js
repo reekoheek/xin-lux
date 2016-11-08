@@ -16,34 +16,33 @@
  */
 
 if (!Cache.prototype.addAll) {
-  Cache.prototype.addAll = function addAll(requests) {
+  Cache.prototype.addAll = function addAll (requests) {
     var cache = this;
 
     // Since DOMExceptions are not constructable:
-    function NetworkError(message) {
+    function NetworkError (message) {
       this.name = 'NetworkError';
       this.code = 19;
       this.message = message;
     }
     NetworkError.prototype = Object.create(Error.prototype);
 
-    return Promise.resolve().then(function() {
+    return Promise.resolve().then(function () {
       if (arguments.length < 1) throw new TypeError();
 
       // Simulate sequence<(Request or USVString)> binding:
       var sequence = [];
 
-      requests = requests.map(function(request) {
+      requests = requests.map(function (request) {
         if (request instanceof Request) {
           return request;
-        }
-        else {
+        } else {
           return String(request); // may throw TypeError
         }
       });
 
       return Promise.all(
-        requests.map(function(request) {
+        requests.map(function (request) {
           if (typeof request === 'string') {
             request = new Request(request);
           }
@@ -51,21 +50,21 @@ if (!Cache.prototype.addAll) {
           var scheme = new URL(request.url).protocol;
 
           if (scheme !== 'http:' && scheme !== 'https:') {
-            throw new NetworkError("Invalid scheme");
+            throw new NetworkError('Invalid scheme');
           }
 
           return fetch(request.clone());
         })
       );
-    }).then(function(responses) {
+    }).then(function (responses) {
       // TODO: check that requests don't overwrite one another
       // (don't think this is possible to polyfill due to opaque responses)
       return Promise.all(
-        responses.map(function(response, i) {
+        responses.map(function (response, i) {
           return cache.put(requests[i], response);
         })
       );
-    }).then(function() {
+    }).then(function () {
       return undefined;
     });
   };

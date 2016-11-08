@@ -772,90 +772,6 @@
 	
 	    this.notify(path, value);
 	  },
-	  push: function push(path) {
-	    var _object$property;
-	
-	    path = this.__templateGetPathAsArray(path);
-	
-	    var object = this;
-	
-	    path.slice(0, -1).forEach(function (segment) {
-	      if (!object) {
-	        return;
-	      }
-	      if (object[segment] === undefined || object[segment] === null) {
-	        object[segment] = {};
-	      }
-	
-	      object = object[segment];
-	    });
-	
-	    var property = path.slice(-1).pop();
-	
-	    for (var _len = arguments.length, values = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	      values[_key - 1] = arguments[_key];
-	    }
-	
-	    var result = (_object$property = object[property]).push.apply(_object$property, values);
-	
-	    this.notify(path, object[property]);
-	
-	    return result;
-	  },
-	  pop: function pop(path) {
-	    path = this.__templateGetPathAsArray(path);
-	
-	    var object = this;
-	
-	    path.slice(0, -1).forEach(function (segment) {
-	      if (!object) {
-	        return;
-	      }
-	      if (object[segment] === undefined || object[segment] === null) {
-	        object[segment] = {};
-	      }
-	
-	      object = object[segment];
-	    });
-	
-	    var property = path.slice(-1).pop();
-	
-	    var result = object[property].pop();
-	
-	    this.notify(path, object[property]);
-	
-	    return result;
-	  },
-	  splice: function splice(path) {
-	    var _object$property2;
-	
-	    path = this.__templateGetPathAsArray(path);
-	
-	    var object = this;
-	
-	    path.slice(0, -1).forEach(function (segment) {
-	      if (!object) {
-	        return;
-	      }
-	      if (object[segment] === undefined || object[segment] === null) {
-	        object[segment] = {};
-	      }
-	
-	      object = object[segment];
-	    });
-	
-	    var property = path.slice(-1).pop();
-	
-	    for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-	      args[_key2 - 1] = arguments[_key2];
-	    }
-	
-	    var result = (_object$property2 = object[property]).splice.apply(_object$property2, args);
-	
-	    this.notify(path, object[property]);
-	
-	    return result;
-	  },
 	  notify: function notify(path, value) {
 	    path = this.__templateGetPathAsString(path);
 	
@@ -918,14 +834,14 @@
 	
 	    this.__templateReady = true;
 	
-	    this.__templateNotifyOnReady.forEach(function (key) {
-	      _this.notify(key, _this.get(key));
-	    });
-	    this.__templateNotifyOnReady = [];
-	
 	    if (!this.__template) {
 	      return;
 	    }
+	
+	    this.__templateNotifyOnReady.forEach(function (key) {
+	      return _this.notify(key, _this.get(key));
+	    });
+	    this.__templateNotifyOnReady = [];
 	
 	    var fragment = this.__templateFragment;
 	    this.__templateFragment = null;
@@ -1517,7 +1433,7 @@
 	
 	      this.annotations.forEach(function (annotation) {
 	        // try {
-	        annotation.effect(value /* , this.model */);
+	        annotation.effect(value, _this.model);
 	        // } catch (err) {
 	        //   console.error(`Error caught while walk effect annotation: ${annotation.expr ? annotation.expr.value : '#unknown'}\n ${err.stack}`);
 	        // }
@@ -1796,8 +1712,9 @@
 	    key: "effect",
 	    value: function effect(value) {
 	      if (this.accessor) {
+	        var _value = this.expr.invoke(this.model);
 	        // FIXME implement composite annotation
-	        this.accessor.set(this.expr.invoke(this.model));
+	        this.accessor.set(_value);
 	      } else {
 	        this.expr.invoke(this.model);
 	      }
@@ -2731,8 +2648,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./transition-animate.css", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./transition-animate.css");
+			module.hot.accept("!!./../../css-loader/index.js!./transition-animate.css", function() {
+				var newContent = require("!!./../../css-loader/index.js!./transition-animate.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});

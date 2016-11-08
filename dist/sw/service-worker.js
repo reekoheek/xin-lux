@@ -1,10 +1,8 @@
-'use strict';
-
 /* globals importScripts, self, location */
-(function (global) {
+(global => {
   'use strict';
 
-  function deserializeUrlParams(queryString) {
+  function deserializeUrlParams (queryString) {
     return new Map(queryString.split('&').map(function (keyValuePair) {
       var splits = keyValuePair.split('=');
       var key = decodeURIComponent(splits[0]);
@@ -17,10 +15,10 @@
     }));
   }
 
-  function getHandler(strategy) {
-    var handler = global.toolbox[strategy] || global[strategy];
+  function getHandler (strategy) {
+    let handler = global.toolbox[strategy] || global[strategy];
     if (typeof handler !== 'function') {
-      throw new Error('Handler for ' + strategy + ' is not a function');
+      throw new Error(`Handler for ${strategy} is not a function`);
     }
     return handler;
   }
@@ -28,7 +26,7 @@
   global.params = deserializeUrlParams(location.search.substring(1));
 
   // Load the sw-toolbox library.
-  importScripts('/sw/sw-toolbox/sw-toolbox.js');
+  importScripts('./sw/sw-toolbox/sw-toolbox.js');
 
   global.toolbox.options.debug = global.params.get('debug') === 'true';
 
@@ -42,26 +40,26 @@
   }
 
   if (global.params.has('defaultCacheStrategy')) {
-    var defaultCacheStrategy = global.params.get('defaultCacheStrategy');
+    let defaultCacheStrategy = global.params.get('defaultCacheStrategy');
     global.toolbox.router.default = getHandler(defaultCacheStrategy);
   }
 
   if (global.params.has('precache')) {
-    var precache = [];
+    let precache = [];
     precache.concat(global.params.get('precache'));
     global.toolbox.precache(precache);
   }
 
   if (global.params.has('route')) {
-    var setsOfRouteParams = global.params.get('route');
+    let setsOfRouteParams = global.params.get('route');
     while (setsOfRouteParams.length > 0) {
-      var routeParams = setsOfRouteParams.splice(0, 3);
-      var originParam = void 0;
+      let routeParams = setsOfRouteParams.splice(0, 3);
+      let originParam;
       if (routeParams[2]) {
         originParam = { origin: new RegExp(routeParams[2]) };
       }
 
-      var handler = getHandler(routeParams[1]);
+      let handler = getHandler(routeParams[1]);
       global.toolbox.router.get(routeParams[0], handler, originParam);
     }
   }

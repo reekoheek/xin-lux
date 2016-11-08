@@ -15,9 +15,9 @@ webpackJsonp([6],{
 	
 	var _xin2 = _interopRequireDefault(_xin);
 	
-	__webpack_require__(28);
+	__webpack_require__(27);
 	
-	__webpack_require__(29);
+	__webpack_require__(28);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -41,13 +41,13 @@ webpackJsonp([6],{
 	  _createClass(LuxSwOfflineAnalytics, [{
 	    key: '_getParameters',
 	    value: function () {
-	      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+	      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(baseUrl) {
 	        return regeneratorRuntime.wrap(function _callee$(_context) {
 	          while (1) {
 	            switch (_context.prev = _context.next) {
 	              case 0:
 	                return _context.abrupt('return', {
-	                  importscript: [new window.URL('/sw/simple-db.js', window.location.href).href, new window.URL('/sw/offline-analytics.js', window.location.href).href]
+	                  importscript: [new window.URL('./sw/simple-db.js', baseUrl).href, new window.URL('./sw/offline-analytics.js', baseUrl).href]
 	                });
 	
 	              case 1:
@@ -58,7 +58,7 @@ webpackJsonp([6],{
 	        }, _callee, this);
 	      }));
 	
-	      function _getParameters() {
+	      function _getParameters(_x) {
 	        return _ref.apply(this, arguments);
 	      }
 	
@@ -75,14 +75,14 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 28:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "./sw/simple-db.js";
 
 /***/ },
 
-/***/ 29:
+/***/ 28:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "./sw/offline-analytics.js";

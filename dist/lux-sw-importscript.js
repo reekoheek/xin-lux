@@ -36,13 +36,13 @@ webpackJsonp([5],[
 	  _createClass(LuxSwImportscript, [{
 	    key: '_getParameters',
 	    value: function () {
-	      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+	      var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(baseUrl) {
 	        return regeneratorRuntime.wrap(function _callee$(_context) {
 	          while (1) {
 	            switch (_context.prev = _context.next) {
 	              case 0:
 	                return _context.abrupt('return', {
-	                  importscript: new window.URL(this.href, window.location.href).href
+	                  importscript: new window.URL(this.href, baseUrl).href
 	                });
 	
 	              case 1:
@@ -53,7 +53,7 @@ webpackJsonp([5],[
 	        }, _callee, this);
 	      }));
 	
-	      function _getParameters() {
+	      function _getParameters(_x) {
 	        return _ref.apply(this, arguments);
 	      }
 	

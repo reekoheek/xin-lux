@@ -2,7 +2,7 @@ import xin from 'xin';
 
 class LuxSwFetch extends xin.Component {
   get props () {
-    return xin.mix(super.props, {
+    return Object.assign({}, super.props, {
       handler: {
         type: String,
         required: true,
@@ -20,7 +20,7 @@ class LuxSwFetch extends xin.Component {
     });
   }
 
-  async _getParameters () {
+  async _getParameters (baseUrl) {
     return {
       route: [ this.path, this.handler, this.origin ],
     };
