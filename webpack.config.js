@@ -3,7 +3,7 @@ const path = require('path');
 
 const ENV = process.env.NODE_ENV || 'development';
 
-console.log(`
+console.error(`
   ENV ${ENV}
 `);
 
@@ -12,8 +12,7 @@ function getPlugins () {
 
   if (ENV === 'production') {
     plugins.push(
-      new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
-      new webpack.optimize.DedupePlugin()
+      new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
     );
   }
 
@@ -46,13 +45,17 @@ module.exports = {
       {
         test: /\.css$/,
         include: /node_modules\/(xin|template-binding)/,
-        loader: 'style-loader!css-loader',
+        loaders: [
+          require.resolve('style-loader'),
+          require.resolve('css-loader'),
+        ],
       },
       {
         test: /\.js$/,
         include: /(lux-[a-zA-Z-]+.js|node_modules\/(xin|template-binding))/,
         loader: require.resolve('babel-loader'),
         query: {
+          presets: ['es2015', 'stage-3'],
           cacheDirectory: true,
         },
       },

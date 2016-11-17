@@ -1,7 +1,7 @@
 import xin from 'xin';
 
-import 'file?name=./sw/[name].[ext]!./sw/simple-db.js';
-import 'file?name=./sw/[name].[ext]!./sw/offline-analytics.js';
+import 'file-loader?name=./sw/[name].[ext]!./sw/simple-db.js';
+import 'file-loader?name=./sw/[name].[ext]!./sw/offline-analytics.js';
 
 class LuxSwOfflineAnalytics extends xin.Component {
   async _getParameters (baseUrl) {

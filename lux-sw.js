@@ -1,8 +1,8 @@
 import xin from 'xin';
 
-import 'file?name=./sw/[name].[ext]!./sw/service-worker.js';
-import 'file?name=./sw/sw-toolbox/[name].[ext]!sw-toolbox/sw-toolbox.js';
-import 'file?name=./sw/sw-toolbox/[name].[ext]!sw-toolbox/sw-toolbox.js.map';
+import 'file-loader?name=./sw/[name].[ext]!./sw/service-worker.js';
+import 'file-loader?name=./sw/sw-toolbox/[name].[ext]!sw-toolbox/sw-toolbox.js';
+import 'file-loader?name=./sw/sw-toolbox/[name].[ext]!sw-toolbox/sw-toolbox.js.map';
 
 function isServiceWorkerSupported () {
   return 'serviceWorker' in navigator;
@@ -55,7 +55,7 @@ class LuxSw extends xin.Component {
         defaultCacheStrategy: this.defaultCacheStrategy,
       };
 
-      let baseUrl = new URL(this.href, location.href);
+      let baseUrl = new window.URL(this.href, window.location.href);
 
       let childParams = await Promise.all([].map.call(this.children, el => el._getParameters(baseUrl)));
 
